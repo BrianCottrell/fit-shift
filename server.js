@@ -77,6 +77,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/pagecount', function (req, res) {
+  var fitnessData = req.param('fitnessData');
   // try to initialize the db on every request if it's not already
   // initialized.
   if (!db) {
@@ -84,7 +85,7 @@ app.get('/pagecount', function (req, res) {
   }
   if (db) {
     db.collection('counts').count(function(err, count ){
-      res.send('{ pageCount: ' + count + '}');
+      res.send('{ pageCount: ' + count + '}' + fitnessData);
     });
   } else {
     res.send('{ pageCount: -1 }');
