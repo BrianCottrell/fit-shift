@@ -94,24 +94,40 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
-app.get('/fitnessdata', function (req, res) {
-  var fitnessData = req.query.fitnessdata;
-  console.log(fitnessData);
+app.get('/collections', function (req, res) {
   // try to initialize the db on every request if it's not already
   // initialized.
   if (!db) {
     initDb(function(err){});
   }
   if (db) {
-    var col = db.collection('counts');
-    // Create a document with request IP and current time of request
-    col.insert({ip: req.ip, date: Date.now(), fitnessdata: fitnessData});
-    db.collection('counts').find(function(err, data){
-      res.send(data);
-    });
+    var collectionNames = db.getCollectionNames()
+    res.send(collectionNames);
   } else {
-    res.send(fitnessData);
+    res.send('No collections found');
   }
+});
+
+app.get('/find', function (req, res) {
+  // try to initialize the db on every request if it's not already
+  // initialized.
+  if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    var counts = db.collection('counts').find();
+    res.send(counts);
+  } else {
+    res.send('No count collection found');
+  }
+});
+
+app.get('/fitnessdata', function (req, res) {
+  var fitnessData = req.query.fitnessdata;
+  console.log(fitnessData);
+  // try to initialize the db on every request if it's not already
+  // initialized.
+  res.send(fitnessData);
 });
 
 // error handling
