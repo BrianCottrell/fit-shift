@@ -108,7 +108,7 @@ app.get('/fitness_data', function (req, res) {
         if (err) {
           throw err;
         }
-        res.render('fitness_data.html', data: result);
+        res.render('fitness_data.html', {data: result});
       });
     } else {
       res.send('Username Not Provided');
