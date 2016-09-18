@@ -69,10 +69,11 @@
   </div>
   <img src=http://i.imgur.com/S6TkINM.png/>
   <script type="text/javascript">
-	document.getElementById('username').addEventListener('change', function() {
-		var url = 'http://nodejs-mongodb-example-fit-zoom.0ec9.hackathon.openshiftapps.com/fitness_data?';
-		document.getElementById('enter').href = url + document.getElementById('username').value;
-	});
+  	var data = document.getElementById('data').innerHTML.split('|');
+  	for(var i = 0; i < data.length; i++){
+  		data[i] = JSON.parse(data[i]);
+  	}
+  	console.log(data);
   </script>
 </body>
 </html>

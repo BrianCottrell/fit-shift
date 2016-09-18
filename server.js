@@ -110,7 +110,7 @@ app.get('/fitness_data', function (req, res) {
         }
         var resultData='';
         for (var i = 0; i < result.length; i++){
-          resultData = resultData + JSON.stringify(result[i]);
+          resultData = resultData + JSON.stringify(result[i])+'|';
         }
         res.render('fitness_data.html', {data: resultData});
       });
