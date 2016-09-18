@@ -83,9 +83,6 @@ app.get('/pagecount', function (req, res) {
     initDb(function(err){});
   }
   if (db) {
-    var col = db.collection('counts');
-    // Create a document with request IP and current time of request
-    col.insert({ip: req.ip, date: Date.now()});
     db.collection('counts').count(function(err, count){
       res.send('{ pageCount: ' + count + '}');
     });
@@ -94,47 +91,54 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
-// app.get('/collections', function (req, res) {
-//   // try to initialize the db on every request if it's not already
-//   // initialized.
-//   if (!db) {
-//     initDb(function(err){});
-//   }
-//   if (db) {
-//     var collectionNames = db.getCollectionNames()
-//     res.send(collectionNames);
-//   } else {
-//     res.send('No collections found');
-//   }
-// });
-
-app.get('/find', function (req, res) {
+app.get('/send_fitness_data', function (req, res) {
+  var userName = req.query.user;
+  var elapsedTime = req.query.time;
+  var distanceTraveled = req.query.distance;
   // try to initialize the db on every request if it's not already
   // initialized.
   if (!db) {
     initDb(function(err){});
   }
   if (db) {
-    // var counts = db.collection('counts').find();
-    // res.send(counts);
-    db.collection('counts').find().toArray(function(err, result) {
-    if (err) {
-      throw err;
+    if (userName && elapsedTime && distanceTraveled) {
+      var col = db.collection('fitnessData');
+      col.insert({
+        user: userName,
+        time: elapsedTime,
+        distance: distanceTraveled,
+        date: Date.now()
+      });
+      res.send('Fitness Data Sent');
+    } else {
+      res.send('Incomplete Data');
     }
-    // console.log(result);
-    res.send(result)
-});
   } else {
-    res.send('No count collection found');
+    res.send('No Database Found');
   }
 });
 
-app.get('/fitnessdata', function (req, res) {
-  var fitnessData = req.query.fitnessdata;
-  console.log(fitnessData);
+app.get('/get_fitness_data', function (req, res) {
+  var userName = req.query.user;
   // try to initialize the db on every request if it's not already
   // initialized.
-  res.send(fitnessData);
+  if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    if (userName && elapsedTime && distanceTraveled) {
+      db.collection('fitnessData').find({user: userName}).toArray(function(err, result) {
+        if (err) {
+          throw err;
+        }
+        res.send(result)
+      });
+    } else {
+      res.send('Username Not Provided');
+    }
+  } else {
+    res.send('No Database Found');
+  }
 });
 
 // error handling
