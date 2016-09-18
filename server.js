@@ -108,7 +108,11 @@ app.get('/fitness_data', function (req, res) {
         if (err) {
           throw err;
         }
-        res.render('fitness_data.html', {data: result});
+        var resultData='';
+        for (var i = 0; i < result.length; i++){
+          resultData = resultData + JSON.stringify(result[i]);
+        }
+        res.render('fitness_data.html', {data: resultData});
       });
     } else {
       res.send('Username Not Provided');
