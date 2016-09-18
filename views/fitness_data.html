@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-  <title>FitZoom</title>
+  <title>FitZoom Results</title>
   <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
   <style type="text/css">
 	body {
@@ -63,7 +63,9 @@
   	<a id="enter" href="http://nodejs-mongodb-example-fit-zoom.0ec9.hackathon.openshiftapps.com/fitzoom">
   		<button><b>Enter</b></button>
   	</a>
-  	<p id="data"><%=result%></p>
+  	<% if (data) { %>
+  		<p id="data"><%=data%></p>
+  	<% } %>
   </div>
   <img src=http://i.imgur.com/S6TkINM.png/>
   <script type="text/javascript">
