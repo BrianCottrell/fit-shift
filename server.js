@@ -91,6 +91,10 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
+app.get('/fitzoom', function (req, res) {
+  res.render('fitzoom.html');
+});
+
 app.get('/send_fitness_data', function (req, res) {
   var userName = req.query.user;
   var elapsedTime = req.query.time;
@@ -136,24 +140,6 @@ app.get('/get_fitness_data', function (req, res) {
     } else {
       res.send('Username Not Provided');
     }
-  } else {
-    res.send('No Database Found');
-  }
-});
-
-app.get('/get_count_data', function (req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-    db.collection('counts').find().toArray(function(err, result) {
-      if (err) {
-        throw err;
-      }
-      res.send(result)
-    });
   } else {
     res.send('No Database Found');
   }
