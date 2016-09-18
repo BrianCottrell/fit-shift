@@ -94,19 +94,19 @@ app.get('/pagecount', function (req, res) {
   }
 });
 
-app.get('/collections', function (req, res) {
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-    var collectionNames = db.getCollectionNames()
-    res.send(collectionNames);
-  } else {
-    res.send('No collections found');
-  }
-});
+// app.get('/collections', function (req, res) {
+//   // try to initialize the db on every request if it's not already
+//   // initialized.
+//   if (!db) {
+//     initDb(function(err){});
+//   }
+//   if (db) {
+//     var collectionNames = db.getCollectionNames()
+//     res.send(collectionNames);
+//   } else {
+//     res.send('No collections found');
+//   }
+// });
 
 app.get('/find', function (req, res) {
   // try to initialize the db on every request if it's not already
@@ -115,8 +115,15 @@ app.get('/find', function (req, res) {
     initDb(function(err){});
   }
   if (db) {
-    var counts = db.collection('counts').find();
-    res.send(counts);
+    // var counts = db.collection('counts').find();
+    // res.send(counts);
+    db.collection('counts').find().toArray(function(err, result) {
+    if (err) {
+      throw err;
+    }
+    // console.log(result);
+    res.send(result)
+});
   } else {
     res.send('No count collection found');
   }
