@@ -95,6 +95,29 @@ app.get('/fitzoom', function (req, res) {
   res.render('fitzoom.html');
 });
 
+app.get('/fitness_data', function (req, res) {
+  var userName = req.query.user;
+  // try to initialize the db on every request if it's not already
+  // initialized.
+  if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    if (userName) {
+      db.collection('fitnessData').find({user: userName}).toArray(function(err, result) {
+        if (err) {
+          throw err;
+        }
+        res.render('fitness_data.html', data: result);
+      });
+    } else {
+      res.send('Username Not Provided');
+    }
+  } else {
+    res.send('No Database Found');
+  }
+});
+
 app.get('/send_fitness_data', function (req, res) {
   var userName = req.query.user;
   var elapsedTime = req.query.time;
@@ -116,29 +139,6 @@ app.get('/send_fitness_data', function (req, res) {
       res.send('Fitness Data Sent');
     } else {
       res.send('Incomplete Data');
-    }
-  } else {
-    res.send('No Database Found');
-  }
-});
-
-app.get('/get_fitness_data', function (req, res) {
-  var userName = req.query.user;
-  // try to initialize the db on every request if it's not already
-  // initialized.
-  if (!db) {
-    initDb(function(err){});
-  }
-  if (db) {
-    if (userName) {
-      db.collection('fitnessData').find({user: userName}).toArray(function(err, result) {
-        if (err) {
-          throw err;
-        }
-        res.send(result)
-      });
-    } else {
-      res.send('Username Not Provided');
     }
   } else {
     res.send('No Database Found');
