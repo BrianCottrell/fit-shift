@@ -127,7 +127,7 @@ app.get('/get_fitness_data', function (req, res) {
   }
   if (db) {
     if (userName && elapsedTime && distanceTraveled) {
-      db.collection('fitnessData').find({user: userName}).toArray(function(err, result) {
+      db.collection('fitnessData').find().toArray(function(err, result) {
         if (err) {
           throw err;
         }
