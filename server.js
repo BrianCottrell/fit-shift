@@ -77,18 +77,40 @@ app.get('/', function (req, res) {
 });
 
 app.get('/pagecount', function (req, res) {
-  var fitnessData = req.param('fitnessData');
   // try to initialize the db on every request if it's not already
   // initialized.
   if (!db) {
     initDb(function(err){});
   }
   if (db) {
-    db.collection('counts').count(function(err, count ){
-      res.send('{ pageCount: ' + count + '}' + fitnessData);
+    var col = db.collection('counts');
+    // Create a document with request IP and current time of request
+    col.insert({ip: req.ip, date: Date.now()});
+    db.collection('counts').count(function(err, count){
+      res.send('{ pageCount: ' + count + '}');
     });
   } else {
     res.send('{ pageCount: -1 }');
+  }
+});
+
+app.get('/fitnessdata', function (req, res) {
+  var fitnessData = req.query.fitnessdata;
+  console.log(fitnessData);
+  // try to initialize the db on every request if it's not already
+  // initialized.
+  if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    var col = db.collection('counts');
+    // Create a document with request IP and current time of request
+    col.insert({ip: req.ip, date: Date.now(), fitnessdata: fitnessData});
+    db.collection('counts').find(function(err, data){
+      res.send(data);
+    });
+  } else {
+    res.send(fitnessData);
   }
 });
 
