@@ -89,9 +89,12 @@
   		totalDistance += parseInt(data[i].distance);
   		if (i < 10) {
   			var id = 'data' + i;
-  			var date = new Date(null);
-  			date.setSeconds(parseInt(data[i].date));
-  			document.getElementById(id).innerHTML = date.toDateString();
+  			// var date = new Date(null);
+  			// date.setSeconds(parseInt(data[i].date));
+  			// document.getElementById(id).innerHTML = date.toDateString();
+
+  			document.getElementById(id).innerHTML = "date test text here"
+
   			document.getElementById(id).style.marginLeft = ((i * 10) + 1) + '%';
   		}
   	}
