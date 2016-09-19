@@ -11,10 +11,10 @@
 	}
 	div {
 		position: absolute;
-		width: 35%;
-		height: 28%;
-		margin-left: 32.5%;
-		margin-top: 17%;
+		width: 85%;
+		height: 65%;
+		margin-left: 7.5%;
+		margin-top: 175px;
 		text-align: center;
 		background-color: rgba(255,255,255,0.5);
 		border-radius: 5px;
@@ -42,25 +42,26 @@
 <body>
   <h1><b>FitZoom</b></h1>
   <div>
-  	<h2><b>Please Enter Your Username</b></h2> 
+  	<h2><b>FitZoom Workout History</b></h2> 
   	<% if (data) { %>
   		<p id="data"><%=data%></p>
   	<% } %>
   </div>
   <img src=http://i.imgur.com/S6TkINM.png/>
   <script type="text/javascript">
-  	var data = document.getElementById('data').innerHTML.split('|');
+  	var data = document.getElementById('data').innerHTML.split('|').pop();
   	var totalTime = 0;
   	var totalDistance = 0;
   	var totalCalories = 0;
   	var totalSessions = 0
-  	for(var i = 0; i < data.length - 1; i++){
+  	for(var i = 0; i < data.length; i++){
   		data[i] = JSON.parse(data[i]);
   		totalSessions++;
-  		totalTime += parseInt(data.time);
-  		totalDistance += parseInt(data.distance);
+  		totalTime += parseInt(data[i].time);
+  		totalDistance += parseInt(data[i].distance);
+  		var date = new Date(null);
+  		data[i].date = date.setSeconds(parseInt(data[i].date));
   	}
-  	console.log(data);
   </script>
 </body>
 </html>
