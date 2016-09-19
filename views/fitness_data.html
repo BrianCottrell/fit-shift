@@ -16,7 +16,7 @@
 		margin-left: 7.5%;
 		margin-top: 175px;
 		text-align: center;
-		background-color: rgba(255,255,255,0.5);
+		background-color: rgba(255,255,255,0.6);
 		border-radius: 5px;
 		z-index: 1;
 	}
@@ -37,6 +37,9 @@
 		position: absolute;
 		width: 100%;
 	}
+	p {
+		display: none;
+	}
   </style>
 </head>
 <body>
@@ -46,14 +49,19 @@
   	<% if (data) { %>
   		<p id="data"><%=data%></p>
   	<% } %>
+  	<h3 id='user'>Useraname</h3>
+  	<h3 id='time'>Time</h3>
+  	<h3 id='distance'>Distance</h3>
+  	<h3 id='calories'>Calories</h3>
   </div>
   <img src=http://i.imgur.com/S6TkINM.png/>
   <script type="text/javascript">
-  	var data = document.getElementById('data').innerHTML.split('|').pop();
+  	var data = document.getElementById('data').innerHTML.split('|');
   	var totalTime = 0;
   	var totalDistance = 0;
   	var totalCalories = 0;
-  	var totalSessions = 0
+  	var totalSessions = 0;
+  	data.pop()
   	for(var i = 0; i < data.length; i++){
   		data[i] = JSON.parse(data[i]);
   		totalSessions++;
@@ -62,6 +70,10 @@
   		var date = new Date(null);
   		data[i].date = date.setSeconds(parseInt(data[i].date));
   	}
+  	document.getElementById('user').innerHTML = 'Profile: ' + data[0].user;
+  	document.getElementById('time').innerHTML = 'Total Time: ' + totalTime;
+  	document.getElementById('distance').innerHTML = 'Total Distance: ' + totalDistance;
+  	document.getElementById('calories').innerHTML = 'Total Calories: ' + (0.18 * totalTime);
   </script>
 </body>
 </html>
