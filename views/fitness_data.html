@@ -87,14 +87,11 @@
   		totalSessions++;
   		totalTime += parseInt(data[i].time);
   		totalDistance += parseInt(data[i].distance);
+  		var date = new Date(null);
+  		data[i].date = date.setSeconds(parseInt(data[i].date));
   		if (i < 10) {
   			var id = 'data' + i;
-  			// var date = new Date(null);
-  			// date.setSeconds(parseInt(data[i].date));
-  			// document.getElementById(id).innerHTML = date.toDateString();
-
-  			document.getElementById(id).innerHTML = "date test text here"
-
+  			document.getElementById(id).innerHTML = data[i].date;
   			document.getElementById(id).style.marginLeft = ((i * 10) + 1) + '%';
   		}
   	}
