@@ -33,6 +33,14 @@
 		color: #303;
 		font-size: 22px;
 	}
+	h3 {
+		display: inline;
+		margin: 3%;
+	}
+	h4 {
+		position: absolute;
+		bottom: 20px;
+	}
 	img {
 		position: absolute;
 		width: 100%;
@@ -50,9 +58,11 @@
   		<p id="data"><%=data%></p>
   	<% } %>
   	<h3 id='user'>Useraname</h3>
+  	<br/><br/>
   	<h3 id='time'>Time</h3>
   	<h3 id='distance'>Distance</h3>
   	<h3 id='calories'>Calories</h3>
+  	<h4>Hello</h4>
   </div>
   <img src=http://i.imgur.com/S6TkINM.png/>
   <script type="text/javascript">
@@ -71,9 +81,9 @@
   		data[i].date = date.setSeconds(parseInt(data[i].date));
   	}
   	document.getElementById('user').innerHTML = 'Profile: ' + data[0].user;
-  	document.getElementById('time').innerHTML = 'Total Time: ' + totalTime;
-  	document.getElementById('distance').innerHTML = 'Total Distance: ' + totalDistance;
-  	document.getElementById('calories').innerHTML = 'Total Calories: ' + (0.18 * totalTime);
+  	document.getElementById('time').innerHTML = 'Total Time: ' + totalTime + 'seconds';
+  	document.getElementById('distance').innerHTML = 'Total Distance: ' + totalDistance + 'meters';
+  	document.getElementById('calories').innerHTML = 'Total Calories: ' + (0.18 * totalTime) + 'calories';
   </script>
 </body>
 </html>
