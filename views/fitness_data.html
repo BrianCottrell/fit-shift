@@ -39,6 +39,7 @@
 	}
 	h4 {
 		position: absolute;
+		width: 8%;
 		bottom: 20px;
 	}
 	img {
@@ -62,7 +63,16 @@
   	<h3 id='time'>Time</h3>
   	<h3 id='distance'>Distance</h3>
   	<h3 id='calories'>Calories</h3>
-  	<h4>Hello</h4>
+  	<h4 id='data0'></h4>
+  	<h4 id='data1'></h4>
+  	<h4 id='data2'></h4>
+  	<h4 id='data3'></h4>
+  	<h4 id='data4'></h4>
+  	<h4 id='data5'></h4>
+  	<h4 id='data6'></h4>
+  	<h4 id='data7'></h4>
+  	<h4 id='data8'></h4>
+  	<h4 id='data9'></h4>
   </div>
   <img src=http://i.imgur.com/S6TkINM.png/>
   <script type="text/javascript">
@@ -79,6 +89,11 @@
   		totalDistance += parseInt(data[i].distance);
   		var date = new Date(null);
   		data[i].date = date.setSeconds(parseInt(data[i].date));
+  		if (i < 10) {
+  			var id = 'data' + i;
+  			document.getElementById(id).innerHTML = data[i].date;
+  			document.getElementById(id).style.marginLeft = ((i * 10) + 1) + '%';
+  		}
   	}
   	document.getElementById('user').innerHTML = 'Profile: ' + data[0].user;
   	document.getElementById('time').innerHTML = 'Total Time: ' + totalTime + 'seconds';
