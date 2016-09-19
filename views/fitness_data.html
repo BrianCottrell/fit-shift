@@ -12,15 +12,13 @@
 	.chart {
 		position: absolute;
 		width: 1.2%;
-		height: 100px;
-		bottom: 70px;
-		background-color: green;
+		bottom: 100px;
 	}
 	.container {
 		position: absolute;
-		width: 90%;
+		width: 94%;
 		height: 65%;
-		margin-left: 5%;
+		margin-left: 3%;
 		margin-top: 175px;
 		text-align: center;
 		background-color: rgba(255,255,255,0.6);
@@ -46,7 +44,7 @@
 	}
 	h4 {
 		position: absolute;
-		width: 9%;
+		width: 9.5%;
 		bottom: 20px;
 	}
 	img {
@@ -132,10 +130,13 @@
   			document.getElementById(id).style.marginLeft = ((i * 10) + 1) + '%';
   			document.getElementById('chart' + i + 'a').style.height = data[i].time + 'px';
   			document.getElementById('chart' + i + 'a').style.marginLeft = ((i * 10) + 3) + '%';
+  			document.getElementById('chart' + i + 'a').style.backgroundColor = 'rgba(255,155,255,0.7)';
   			document.getElementById('chart' + i + 'b').style.height = (parseInt(data[i].distance) / 5) + 'px';
-  			document.getElementById('chart' + i + 'b').style.marginLeft = ((i * 10) + 4.2) + '%';
+  			document.getElementById('chart' + i + 'b').style.marginLeft = ((i * 10) + 4.6) + '%';
+  			document.getElementById('chart' + i + 'b').style.backgroundColor = 'rgba(155,55,155,0.7)';
   			document.getElementById('chart' + i + 'c').style.height = (parseInt(data[i].time) * 0.9) + 'px';
-  			document.getElementById('chart' + i + 'c').style.marginLeft = ((i * 10) + 5.4) + '%';
+  			document.getElementById('chart' + i + 'c').style.marginLeft = ((i * 10) + 6.2) + '%';
+  			document.getElementById('chart' + i + 'c').style.backgroundColor = 'rgba(205,105,225,0.7)';
   		}
   	}
   	document.getElementById('user').innerHTML = 'Profile: ' + data[0].user;
