@@ -9,11 +9,18 @@
 		margin: 0px;
 		font-family: 'Orbitron', sans-serif;
 	}
-	div {
+	.chart {
 		position: absolute;
-		width: 85%;
+		width: 1.2%;
+		height: 100px;
+		bottom: 70px;
+		background-color: green;
+	}
+	.container {
+		position: absolute;
+		width: 90%;
 		height: 65%;
-		margin-left: 7.5%;
+		margin-left: 5%;
 		margin-top: 175px;
 		text-align: center;
 		background-color: rgba(255,255,255,0.6);
@@ -39,7 +46,7 @@
 	}
 	h4 {
 		position: absolute;
-		width: 8%;
+		width: 9%;
 		bottom: 20px;
 	}
 	img {
@@ -53,7 +60,7 @@
 </head>
 <body>
   <h1><b>FitZoom</b></h1>
-  <div>
+  <div class='container'>
   	<h2><b>FitZoom Workout History</b></h2> 
   	<% if (data) { %>
   		<p id="data"><%=data%></p>
@@ -63,16 +70,46 @@
   	<h3 id='time'>Time</h3>
   	<h3 id='distance'>Distance</h3>
   	<h3 id='calories'>Calories</h3>
-  	<h4 id='data0'></h4>
-  	<h4 id='data1'></h4>
+  	<h4 id='data0'>test data</h4>
+  	<div class='chart' id='chart0a'></div>
+  	<div class='chart' id='chart0b'></div>
+  	<div class='chart' id='chart0c'></div>
+  	<h4 id='data1'>test data</h4>
+  	<div class='chart' id='chart1a'></div>
+  	<div class='chart' id='chart1b'></div>
+  	<div class='chart' id='chart1c'></div>
   	<h4 id='data2'></h4>
+  	<div class='chart' id='chart2a'></div>
+  	<div class='chart' id='chart2b'></div>
+  	<div class='chart' id='chart2c'></div>
   	<h4 id='data3'></h4>
+  	<div class='chart' id='chart3a'></div>
+  	<div class='chart' id='chart3b'></div>
+  	<div class='chart' id='chart3c'></div>
   	<h4 id='data4'></h4>
+  	<div class='chart' id='chart4a'></div>
+  	<div class='chart' id='chart4b'></div>
+  	<div class='chart' id='chart4c'></div>
   	<h4 id='data5'></h4>
+  	<div class='chart' id='chart5a'></div>
+  	<div class='chart' id='chart5b'></div>
+  	<div class='chart' id='chart5c'></div>
   	<h4 id='data6'></h4>
+  	<div class='chart' id='chart6a'></div>
+  	<div class='chart' id='chart6b'></div>
+  	<div class='chart' id='chart6c'></div>
   	<h4 id='data7'></h4>
+  	<div class='chart' id='chart7a'></div>
+  	<div class='chart' id='chart7b'></div>
+  	<div class='chart' id='chart7c'></div>
   	<h4 id='data8'></h4>
+  	<div class='chart' id='chart8a'></div>
+  	<div class='chart' id='chart8b'></div>
+  	<div class='chart' id='chart8c'></div>
   	<h4 id='data9'></h4>
+  	<div class='chart' id='chart9a'></div>
+  	<div class='chart' id='chart9b'></div>
+  	<div class='chart' id='chart9c'></div>
   </div>
   <img src=http://i.imgur.com/S6TkINM.png/>
   <script type="text/javascript">
@@ -91,8 +128,14 @@
   			var id = 'data' + i;
   			var date = new Date(null);
   			date.setSeconds(parseInt(data[i].date)/1000000);
-  			document.getElementById(id).innerHTML = date.toDateString();
+  			document.getElementById(id).innerHTML = date.toLocaleString();
   			document.getElementById(id).style.marginLeft = ((i * 10) + 1) + '%';
+  			document.getElementById('chart' + i + 'a').style.height = data[i].time + 'px';
+  			document.getElementById('chart' + i + 'a').style.marginLeft = ((i * 10) + 3) + '%';
+  			document.getElementById('chart' + i + 'b').style.height = (parseInt(data[i].distance) / 5) + 'px';
+  			document.getElementById('chart' + i + 'b').style.marginLeft = ((i * 10) + 4.2) + '%';
+  			document.getElementById('chart' + i + 'c').style.height = (parseInt(data[i].time) * 0.9) + 'px';
+  			document.getElementById('chart' + i + 'c').style.marginLeft = ((i * 10) + 5.4) + '%';
   		}
   	}
   	document.getElementById('user').innerHTML = 'Profile: ' + data[0].user;
