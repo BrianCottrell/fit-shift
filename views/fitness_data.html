@@ -27,6 +27,7 @@
 	}
 	.dark{
 		display: inline;
+		max-height: 190px;
 		margin-left: 5px;
 		margin-right: 15px;
 		padding: 5px;
@@ -66,6 +67,7 @@
 	}
 	.light {
 		display: inline;
+		max-height: 190px;
 		margin-left: 5px;
 		margin-right: 15px;
 		padding: 5px;
@@ -73,6 +75,7 @@
 	}
 	.medium {
 		display: inline;
+		max-height: 190px;
 		margin-left: 5px;
 		margin-right: 15px;
 		padding: 5px;
@@ -146,25 +149,27 @@
   	var totalSessions = 0;
   	data.pop()
   	for(var i = 0; i < data.length; i++){
+  		var j = data.length - 10;
   		data[i] = JSON.parse(data[i]);
   		totalSessions++;
   		totalTime += parseInt(data[i].time);
   		totalDistance += parseInt(data[i].distance);
-  		if (i < 10) {
-  			var id = 'data' + i;
+  		if (i >= j) {
+  			var k = i - j;
+  			var id = 'data' + k;
   			var date = new Date(null);
-  			date.setSeconds(parseInt(data[i].date)/1000000);
+  			date.setSeconds(parseInt(data[k].date)/1000000);
   			document.getElementById(id).innerHTML = date.toLocaleString();
-  			document.getElementById(id).style.marginLeft = ((i * 10) + 1) + '%';
-  			document.getElementById('chart' + i + 'a').style.height = data[i].time + 'px';
-  			document.getElementById('chart' + i + 'a').style.marginLeft = ((i * 10) + 3) + '%';
-  			document.getElementById('chart' + i + 'a').style.backgroundColor = 'rgba(255,155,255,0.7)';
-  			document.getElementById('chart' + i + 'b').style.height = (parseInt(data[i].distance) / 5) + 'px';
-  			document.getElementById('chart' + i + 'b').style.marginLeft = ((i * 10) + 4.6) + '%';
-  			document.getElementById('chart' + i + 'b').style.backgroundColor = 'rgba(155,55,155,0.7)';
-  			document.getElementById('chart' + i + 'c').style.height = (parseInt(data[i].time) * 0.9) + 'px';
-  			document.getElementById('chart' + i + 'c').style.marginLeft = ((i * 10) + 6.2) + '%';
-  			document.getElementById('chart' + i + 'c').style.backgroundColor = 'rgba(205,105,225,0.7)';
+  			document.getElementById(id).style.marginLeft = ((k * 10) + 1) + '%';
+  			document.getElementById('chart' + k + 'a').style.height = data[k].time + 'px';
+  			document.getElementById('chart' + k + 'a').style.marginLeft = ((k * 10) + 3) + '%';
+  			document.getElementById('chart' + k + 'a').style.backgroundColor = 'rgba(255,155,255,0.7)';
+  			document.getElementById('chart' + k + 'b').style.height = (parseInt(data[k].distance) / 5) + 'px';
+  			document.getElementById('chart' + k + 'b').style.marginLeft = ((k * 10) + 4.6) + '%';
+  			document.getElementById('chart' + k + 'b').style.backgroundColor = 'rgba(155,55,155,0.7)';
+  			document.getElementById('chart' + k + 'c').style.height = (parseInt(data[k].time) * 0.9) + 'px';
+  			document.getElementById('chart' + k + 'c').style.marginLeft = ((k * 10) + 6.2) + '%';
+  			document.getElementById('chart' + k + 'c').style.backgroundColor = 'rgba(205,105,225,0.7)';
   		}
   	}
   	document.getElementById('user').innerHTML = 'Profile: ' + data[0].user;
