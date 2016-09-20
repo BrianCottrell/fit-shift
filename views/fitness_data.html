@@ -150,6 +150,9 @@
   	data.pop()
   	for(var i = 0; i < data.length; i++){
   		var j = data.length - 10;
+  		if (j < 0) {
+  			j = 0;
+  		}
   		data[i] = JSON.parse(data[i]);
   		totalSessions++;
   		totalTime += parseInt(data[i].time);
