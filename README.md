@@ -1,6 +1,8 @@
 # FitShift for FitZoom
 OpenShift project for use with the FitZoom application for the 2016 Code Healthy with OpenShift Challenge.
 
+Enter 'azinicus' as the username to view a profile with fitness data.
+
 ## Inspiration
 We wanted to bring the world of VR into our daily workout routine. Our goal was to combine fitness and entertainment by creating an immersive VR experience that could be enjoyed while exercising. In addition we also wanted to use the experience as a means of encouraging riders to reach their fitness goals and track their progress from both within and outside of the application. 
 ## What it does
