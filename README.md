@@ -1,4 +1,4 @@
-# FitZoom FitShift
+# FitShift for FitZoom
 OpenShift project for use with the FitZoom application for the 2016 Code Healthy with OpenShift Challenge.
 
 ## Inspiration
