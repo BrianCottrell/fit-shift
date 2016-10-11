@@ -159,7 +159,7 @@
   			var k = i - j;
   			var id = 'data' + k;
   			var date = new Date(null);
-  			date.setSeconds(parseInt(data[k].date)/1000000);
+  			date.setSeconds(parseInt(data[k].date)/1000);
   			document.getElementById(id).innerHTML = date.toLocaleString();
   			document.getElementById(id).style.marginLeft = ((k * 10) + 1) + '%';
   			document.getElementById('chart' + k + 'a').style.height = data[k].time + 'px';
