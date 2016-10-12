@@ -176,7 +176,7 @@
   	document.getElementById('user').innerHTML = 'Profile: ' + data[0].user;
   	document.getElementById('time').innerHTML = 'Total Time: ' + totalTime + 'seconds';
   	document.getElementById('distance').innerHTML = 'Total Distance: ' + totalDistance + 'meters';
-  	document.getElementById('calories').innerHTML = 'Total Calories: ' + (0.18 * totalTime) + 'calories';
+  	document.getElementById('calories').innerHTML = 'Total Calories: ' + (Math.round(0.18 * totalTime)) + 'calories';
   </script>
 </body>
 </html>
